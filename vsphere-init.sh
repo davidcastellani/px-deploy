@@ -21,6 +21,7 @@ cat <<EOF >/vsphere-centos.json
     "vsphere-datastore": "$vsphere_datastore",
     "vsphere-folder": "$vsphere_template_dir",
     "vm-name": "$vsphere_template_base",
+    "vsphere_boot_wait: "$vsphere_boot_wait",
     "vm-cpu-num": "4",
     "vm-mem-size": "8192",
     "vm-disk-size": "52000",
@@ -36,7 +37,7 @@ cat <<EOF >/vsphere-centos.json
         "<tab> text ks=hd:fd0:/{{user \`kickstart_file\`}}<enter><wait>"
       ],
       "boot_order": "disk,cdrom,floppy",
-      "boot_wait": "10s",
+      "boot_wait": "{{user \`vsphere_boot_wait\`}}",
       "cluster": "{{user \`vsphere-cluster\`}}",
       "resource_pool": "{{user \`vsphere-resource-pool\`}}",
       "convert_to_template": true,
